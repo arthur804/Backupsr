@@ -31,7 +31,7 @@ namespace Backupser {
 				v.OrderBy(x => x);
 			}
 			for (int i = amount; i < v.Length; i++) {
-				File.Delete(v[i]);
+				File.Delete(v[v.Length - i - 1]);
 			}
 			return false;
 		}

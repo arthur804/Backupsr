@@ -10,13 +10,16 @@ namespace Backupser {
 		public const string STANDARD_LOCATION = "\\Backups-upsr";
 		[STAThread]
 		static void Main(string[] s) {
-			if (s.Length != 0) {
-				MakeBackup(); 
-			} else { 
-				Application.EnableVisualStyles();
-				Application.SetCompatibleTextRenderingDefault(false);
-				Application.Run(new MainForm());
-			}
+			var workDir = Directory.GetCurrentDirectory() + STANDARD_LOCATION;
+			var storage = new Storage(workDir + "\\options");
+			ZippingClass.DeleteUntillAmount(storage.Folder, 2);
+			//if (s.Length != 0) {
+			//	MakeBackup(); 
+			//} else { 
+			//	Application.EnableVisualStyles();
+			//	Application.SetCompatibleTextRenderingDefault(false);
+			//	Application.Run(new MainForm());
+			//}
 		}
 
 		private static void MakeBackup() {
@@ -26,6 +29,9 @@ namespace Backupser {
 			var storage = new Storage(workDir + "\\options");
 			if (Directory.Exists(storage.FileName) && Directory.Exists(storage.Folder))
 				ZippingClass.ZipToFolder(storage.FileName, storage.Folder, DateTime.Now.ToString("yyyyMMddTHHmmssfff"));
+			int.TryParse(storage.MaxStrorage, out int val);
+			if (val < 1) val = 100;
+			ZippingClass.DeleteUntillAmount(storage.Folder, val);
 		}
 	}
 }

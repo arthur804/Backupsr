@@ -5,10 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 
 //TODO
-//0 give possiblity to back up (date as name)
 //2 load from backup and replace
 //3 change max backups
-//4 backup with an .exe file you don't have to use 
 namespace Backupser {
 	public partial class MainForm : Form {
 		private Storage _storage;
