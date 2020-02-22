@@ -10,16 +10,13 @@ namespace Backupser {
 		public const string STANDARD_LOCATION = "\\Backups-upsr";
 		[STAThread]
 		static void Main(string[] s) {
-			var workDir = Directory.GetCurrentDirectory() + STANDARD_LOCATION;
-			var storage = new Storage(workDir + "\\options");
-			ZippingClass.DeleteUntillAmount(storage.Folder, 2);
-			//if (s.Length != 0) {
-			//	MakeBackup(); 
-			//} else { 
-			//	Application.EnableVisualStyles();
-			//	Application.SetCompatibleTextRenderingDefault(false);
-			//	Application.Run(new MainForm());
-			//}
+			if (s.Length != 0) {
+				MakeBackup();
+			} else {
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(new MainForm());
+			}
 		}
 
 		private static void MakeBackup() {
